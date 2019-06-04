@@ -10,7 +10,7 @@ class Maze:
         self.screen = screen
         self.backlog = [(0, 0)]
         pos_x, pos_y = 0, 0
-        for x in range(self.size ):
+        for x in range(self.size):
             self.maze.append([])
             for y in range(self.size):
                 self.maze[x].append(Cell(pos_x, pos_y))
@@ -51,25 +51,21 @@ class Maze:
 
         if len(options):
             rand_int = len(options) - 1
-            # print(rand_int)
             move = options[random.randint(0, rand_int)]
             next_cell = self.maze[move[0]][move[1]]
             next_cell.visited = True
 
-            # Remove walls to current and neighbour
+            # Remove walls of current and neighbour
             self.remove_walls((x, y), (move[0], move[1]))
 
-            # print(move)
-            color = (random.randint(0, 35), random.randint(0, 35), random.randint(0, 55))
-            # color = (10, 30, 50)
-            pygame.draw.rect(self.screen, color, pygame.Rect(next_cell.a, (48, 48)))
+            # color = (random.randint(0, 35), random.randint(0, 35), random.randint(0, 55))
+            # pygame.draw.rect(self.screen, color, pygame.Rect(next_cell.a, (48, 48)))
 
             self.backlog.append((move[0], move[1]))
             self.generate_maze(move[0], move[1], count)
         else:
             if len(self.backlog):
                 move = self.backlog.pop()
-                # print("BACK")
                 self.generate_maze(move[0], move[1])
             else:
                 return True
@@ -81,23 +77,17 @@ class Maze:
         current_cell = self.maze[current[1]][current[0]]
         next_cell = self.maze[move[1]][move[0]]
 
-        # DOWN
         if difference_y == -1:
             current_cell.walls[2] = 0
             next_cell.walls[0] = 0
-            # print("HERE")
-
-        # RIGHT
         if difference_x == 1:
             current_cell.walls[3] = 0
             next_cell.walls[1] = 0
 
-        # DOWN
         if difference_y == 1:
             current_cell.walls[0] = 0
             next_cell.walls[2] = 0
 
-        # LEFT
         if difference_x == -1:
             current_cell.walls[1] = 0
             next_cell.walls[3] = 0
