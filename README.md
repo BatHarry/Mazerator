@@ -12,3 +12,7 @@ The maze class is where the maze itself is generated.
 Starting with filling in a two dimensional array of Cell objects which later will be modified.
 In order to create a playable maze, the Maze class uses a backlog to go through all the cells and go back if it gets stuck. 
 Starting from the first cell the algorithm picks a random adjecent neighbour for its next move and by doing that removes the walls between the current and next cells.
+Finally the Maze class uses the draw method to draw the maze treating every wall as an individual line. 
+
+The character class creates the the player's cursor, positioned on the first cell of the maze. 
+This class also enables the the player to move within the maze checki g if the input move is allowed. 
